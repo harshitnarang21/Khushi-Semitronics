@@ -40,12 +40,15 @@ export async function GET(request: NextRequest) {
       page,
       totalPages: Math.ceil(total / limit),
     })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching products:', error)
-    return NextResponse.json(
-      { error: 'Failed to fetch products' },
-      { status: 500 }
-    )
+    // Return empty result instead of error to prevent frontend crashes
+    return NextResponse.json({
+      products: [],
+      total: 0,
+      page: 1,
+      totalPages: 0,
+    })
   }
 }
 

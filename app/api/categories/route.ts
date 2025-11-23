@@ -15,12 +15,10 @@ export async function GET() {
       .filter((c) => c !== null && c !== '') as string[]
 
     return NextResponse.json(categoryList)
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching categories:', error)
-    return NextResponse.json(
-      { error: 'Failed to fetch categories' },
-      { status: 500 }
-    )
+    // Return empty array instead of error to prevent frontend crashes
+    return NextResponse.json([])
   }
 }
 
