@@ -9,6 +9,7 @@
     "lint": "next lint",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
+    "db:deploy": "prisma migrate deploy",
     "postinstall": "prisma generate",
     "bulk-import": "tsx scripts/bulk-import.ts",
     "seed": "npx tsx scripts/add-sample-products.ts"
