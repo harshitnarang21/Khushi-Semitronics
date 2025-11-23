@@ -1,0 +1,8 @@
+{
+  "buildCommand": "prisma generate && prisma db push && next build",
+  "devCommand": "prisma generate && next dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["bom1"]
+}
+

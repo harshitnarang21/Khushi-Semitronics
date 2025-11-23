@@ -361,7 +361,7 @@ export default function NewInvoicePage() {
             </div>
 
             {items.length === 0 && (
-              <p className="text-gray-500 text-sm mt-4">No items added yet. Click "Add Item" to add products.</p>
+              <p className="text-gray-500 text-sm mt-4">No items added yet. Click &quot;Add Item&quot; to add products.</p>
             )}
           </div>
 

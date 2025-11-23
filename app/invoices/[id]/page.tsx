@@ -86,7 +86,7 @@ export default function InvoiceViewPage() {
             </svg>
           </div>
           <h3 className="text-2xl font-bold text-gray-900 mb-2">Invoice not found</h3>
-          <p className="text-gray-600 mb-6">The invoice you're looking for doesn't exist</p>
+          <p className="text-gray-600 mb-6">The invoice you&apos;re looking for doesn&apos;t exist</p>
           <Link href="/invoices" className="btn-primary inline-block">
             Back to Invoices
           </Link>

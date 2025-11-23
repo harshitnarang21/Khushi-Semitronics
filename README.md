@@ -76,11 +76,33 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Environment Variables
 
+### Local Development
+
 Create a `.env` file in the root directory:
 
 ```env
 DATABASE_URL="file:./dev.db"
 ```
+
+### Vercel Deployment
+
+1. **Add Vercel Postgres Database**:
+   - Go to your Vercel project dashboard
+   - Click on "Storage" tab
+   - Click "Create" → "Postgres"
+   - Create the database (free tier available)
+   - Copy the connection string
+
+2. **Set Environment Variable**:
+   - Go to Project Settings → Environment Variables
+   - Add `DATABASE_URL` with your Postgres connection string
+   - Make sure to select all environments (Production, Preview, Development)
+
+3. **Deploy**:
+   - Vercel will automatically run `prisma generate` and `prisma db push` during build
+   - Your database schema will be created automatically
+
+**Note**: The project is configured to use PostgreSQL for production (Vercel) and SQLite for local development. The Prisma schema will automatically use the correct database based on the `DATABASE_URL` environment variable.
 
 ## Available Scripts
 

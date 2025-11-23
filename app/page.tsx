@@ -45,8 +45,34 @@ export default function Home() {
     fetchCategories()
   }, [])
 
+  const fetchProducts = async () => {
+    setLoading(true)
+    try {
+      const params = new URLSearchParams({
+        page: page.toString(),
+        limit: '20',
+      })
+      if (search) params.append('search', search)
+      if (category) params.append('category', category)
+
+      const res = await fetch(`/api/products?${params}`)
+      const data = await res.json()
+      setProducts(data.products || [])
+      setTotalPages(data.totalPages || 1)
+    } catch (error) {
+      console.error('Error fetching products:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchCategories()
+  }, [])
+
   useEffect(() => {
     fetchProducts()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, category, page])
 
   const fetchCategories = async () => {
@@ -151,7 +177,7 @@ export default function Home() {
               </span>
               {search && (
                 <span className="text-sm text-gray-600">
-                  for "{search}"
+                  for &quot;{search}&quot;
                 </span>
               )}
             </div>

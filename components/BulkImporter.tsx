@@ -131,7 +131,7 @@ export default function BulkImporter({
             <li>This process may take several minutes depending on the number of products</li>
             <li>There is a 2-second delay between requests to avoid rate limiting</li>
             <li>Some products may fail to import due to parsing issues</li>
-            <li>Mouser.com's HTML structure may change, affecting the scraper</li>
+            <li>Mouser.com&apos;s HTML structure may change, affecting the scraper</li>
             <li>Products are automatically deduplicated by part number</li>
           </ul>
         </div>
