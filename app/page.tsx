@@ -75,6 +75,11 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, category, page])
 
+  useEffect(() => {
+    fetchProducts()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, category, page])
+
   const fetchCategories = async () => {
     try {
       const res = await fetch('/api/categories')
