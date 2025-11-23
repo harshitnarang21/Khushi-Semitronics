@@ -135,7 +135,7 @@ export default function MouserImporter({
         <p className="text-sm text-blue-800">
           Web scraping may not always work perfectly due to website structure
           changes. If the automatic import fails, you can manually add products
-          using the "Add Product" tab. The scraper attempts to extract part
+          using the &quot;Add Product&quot; tab. The scraper attempts to extract part
           numbers, manufacturers, descriptions, prices, and images from Mouser
           product pages.
         </p>
