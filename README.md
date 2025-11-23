@@ -1,180 +1,103 @@
-# Khushi Semitronics - Semiconductor E-Commerce Platform
+# Khushi-Semitronics
 
-A modern e-commerce website for selling semiconductor components, similar to Mouser.com, with full inventory management capabilities.
+E-commerce website for Khushi Semitronics - A professional semiconductor components store built with Next.js, TypeScript, and Prisma.
 
 ## Features
 
-- **Product Catalog**: Browse and search semiconductor products with filters
-- **Admin Dashboard**: Complete CRUD operations for product management
-- **Image Upload**: Upload and update product images
-- **Stock Management**: Add, update, and remove stock quantities
-- **Mouser Integration**: Import products from Mouser.com using web scraping
-- **Modern UI**: Beautiful, responsive design built with Next.js and Tailwind CSS
+- 🛍️ **Product Catalog**: Browse and search through a wide range of semiconductor components
+- 📦 **Product Management**: Admin panel to add, update, and manage products
+- 📄 **Invoice Generation**: Create and manage professional invoices
+- 🔍 **Advanced Search**: Search products by part number, manufacturer, or description
+- 📱 **WhatsApp Integration**: Join WhatsApp group for orders and updates
+- 🎨 **Modern UI**: Clean, professional design inspired by Mouser.com
+- 📊 **Stock Management**: Track inventory and stock levels
+- 🖼️ **Image Upload**: Upload and manage product images
+- 🔄 **Bulk Import**: Import products from Mouser.com
 
 ## Tech Stack
 
-- **Frontend**: Next.js 14, React, TypeScript, Tailwind CSS
-- **Backend**: Next.js API Routes
+- **Framework**: Next.js 14
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
 - **Database**: SQLite with Prisma ORM
-- **Image Handling**: File uploads to public/uploads directory
+- **Deployment**: Ready for Vercel/Netlify
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ installed
-- npm or yarn package manager
+- Node.js 18+ 
+- npm or yarn
 
 ### Installation
 
-1. Install dependencies:
+1. Clone the repository
+```bash
+git clone https://github.com/harshitnarang21/Khushi-Semitronics.git
+cd Khushi-Semitronics
+```
+
+2. Install dependencies
 ```bash
 npm install
 ```
 
-2. Set up the database:
+3. Set up the database
 ```bash
-npx prisma generate
 npx prisma db push
 ```
 
-3. Create the uploads directory:
+4. Add sample products (optional)
 ```bash
-mkdir -p public/uploads
+npm run seed
 ```
 
-4. Run the development server:
+5. Run the development server
 ```bash
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-## Usage
-
-### Viewing Products
-
-- Navigate to the home page to browse all products
-- Use the search bar to find products by part number, manufacturer, or description
-- Filter products by category using the category buttons
-
-### Admin Features
-
-1. **Access Admin Dashboard**: Click "Admin" in the navigation bar
-
-2. **Add Product**:
-   - Go to "Add Product" tab
-   - Fill in product details (Part Number, Manufacturer, Price are required)
-   - Upload an image file or provide an image URL
-   - Click "Add Product"
-
-3. **Edit Product**:
-   - Go to "Manage Products" tab
-   - Click "Edit" on any product
-   - Update the information and click "Update Product"
-
-4. **Delete Product**:
-   - Go to "Manage Products" tab
-   - Click "Delete" on any product
-   - Confirm the deletion
-
-5. **Update Stock**:
-   - Edit a product and change the stock quantity
-   - Save the changes
-
-6. **Update Product Image**:
-   - Edit a product
-   - Upload a new image file or change the image URL
-   - Save the changes
-
-7. **Import from Mouser**:
-   - Go to "Import from Mouser" tab
-   - Enter a Mouser.com search URL or product listing URL
-   - Set the number of products to import
-   - Click "Import Products"
-
-8. **Bulk Import from Mouser**:
-   - Go to "Bulk Import" tab in Admin
-   - Enter multiple search terms separated by commas (e.g., "semiconductor,resistor,capacitor")
-   - Set the number of products to import per term
-   - Click "Start Bulk Import"
-   - This will automatically import products from multiple categories
-
-9. **Bulk Import via Command Line**:
-   - Run `npm run bulk-import` to import products from common semiconductor categories
-   - This script will import products from 15+ categories automatically
-   - Products are imported with a 2-second delay between requests to avoid rate limiting
-
-## Database Management
-
-- View database: `npx prisma studio`
-- Reset database: Delete `prisma/dev.db` and run `npx prisma db push`
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Project Structure
 
 ```
-├── app/
-│   ├── api/              # API routes
-│   │   ├── products/     # Product CRUD endpoints
-│   │   ├── upload/       # Image upload endpoint
-│   │   ├── scrape-mouser/# Mouser scraper endpoint
-│   │   └── categories/   # Categories endpoint
-│   ├── admin/            # Admin dashboard page
-│   ├── layout.tsx        # Root layout
-│   ├── page.tsx          # Home page
-│   └── globals.css       # Global styles
-├── components/           # React components
-│   ├── ProductCard.tsx
-│   ├── ProductForm.tsx
-│   ├── ProductList.tsx
-│   ├── SearchBar.tsx
-│   ├── FilterBar.tsx
-│   ├── MouserImporter.tsx
-│   └── BulkImporter.tsx
-├── scripts/
-│   └── bulk-import.ts    # Command-line bulk import script
-├── lib/
-│   └── prisma.ts         # Prisma client
-├── prisma/
-│   └── schema.prisma     # Database schema
-└── public/
-    └── uploads/          # Uploaded images
+├── app/                    # Next.js app directory
+│   ├── api/               # API routes
+│   ├── admin/             # Admin dashboard
+│   ├── invoices/          # Invoice pages
+│   └── page.tsx           # Home page
+├── components/            # React components
+├── lib/                   # Utility functions
+├── prisma/                # Database schema
+├── public/                # Static assets
+└── scripts/               # Utility scripts
 ```
 
-## Bulk Importing Products
+## Environment Variables
 
-The website includes two methods to bulk import products from Mouser.com:
+Create a `.env` file in the root directory:
 
-### Method 1: Web Interface (Recommended)
-1. Go to Admin → "Bulk Import" tab
-2. Enter search terms (comma-separated)
-3. Set products per term (10-500)
-4. Click "Start Bulk Import"
-
-### Method 2: Command Line Script
-Run the automated bulk import script:
-```bash
-npm run bulk-import
+```env
+DATABASE_URL="file:./dev.db"
 ```
 
-This will import products from 15+ common semiconductor categories:
-- Semiconductors, Resistors, Capacitors, Transistors, Diodes
-- ICs, Microcontrollers, Op-amps, Voltage Regulators
-- Oscillators, Crystals, Connectors, LEDs, Switches, Relays
+## Available Scripts
 
-The script imports 100 products per category by default (configurable in the script).
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run seed` - Add sample products
+- `npm run db:push` - Push database schema changes
+- `npm run db:studio` - Open Prisma Studio
 
-## Notes
+## Contact
 
-- The Mouser scraper may require adjustments based on Mouser.com's current HTML structure
-- Bulk imports include a 2-second delay between requests to avoid rate limiting
-- Products are automatically deduplicated by part number
-- Some products may fail to import due to parsing issues or website structure changes
-- For production, consider using a more robust database (PostgreSQL) and cloud storage for images
-- Add authentication/authorization for the admin panel in production
-- Be respectful of Mouser.com's servers when bulk importing
+- **Email**: khushi.semitronics@yahoo.com
+- **Phone**: +91-9560426627
+- **Address**: G-93 Dilshad Colony, Delhi-95, India
+- **WhatsApp**: [Join our group](https://chat.whatsapp.com/DFPdGU6I4ZSJuqfh6DkVVe)
 
 ## License
 
-MIT
-
+This project is private and proprietary.
