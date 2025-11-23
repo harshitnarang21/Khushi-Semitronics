@@ -3,9 +3,31 @@ import { prisma } from '@/lib/prisma'
 
 export async function POST() {
   try {
-    // Push the schema to create tables
+    if (!process.env.DATABASE_URL) {
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: 'DATABASE_URL environment variable is not set. Please add it in Vercel project settings.' 
+        },
+        { status: 400 }
+      )
+    }
+
+    // Use Prisma's programmatic API to push schema
+    const { PrismaClient } = require('@prisma/client')
+    const client = new PrismaClient()
+    
+    // Test connection first
+    await client.$connect()
+    
+    // Push schema using Prisma Migrate
     const { execSync } = require('child_process')
-    execSync('npx prisma db push --accept-data-loss', { stdio: 'inherit' })
+    execSync('npx prisma db push --accept-data-loss --skip-generate', { 
+      stdio: 'inherit',
+      env: { ...process.env }
+    })
+    
+    await client.$disconnect()
     
     return NextResponse.json({ 
       success: true, 
